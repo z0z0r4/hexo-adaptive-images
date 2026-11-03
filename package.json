@@ -1,0 +1,34 @@
+{
+  "name": "hexo-adaptive-images",
+  "version": "1.0.0",
+  "description": "Hexo plugin: generate JPEG XL / WebP siblings of png/jpg images at build time and wrap <img> in <picture> for adaptive formats",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib",
+    "README.md",
+    "README.zh-CN.md"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "hexo",
+    "hexo-plugin",
+    "image",
+    "webp",
+    "jxl",
+    "picture"
+  ],
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "dependencies": {
+    "@jsquash/jxl": "^1.3.0",
+    "sharp": "^0.35.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/z0z0r4/hexo-adaptive-images.git"
+  },
+  "homepage": "https://github.com/z0z0r4/hexo-adaptive-images#readme",
+  "author": "z0z0r4"
+}
