@@ -15,7 +15,7 @@ const DEFAULTS = {
   extensions: SUPPORTED_EXT,
   cache_dir: path.join("node_modules", ".cache", "hexo-adaptive-images"),
   formats: [
-    { type: "jxl", quality: 80, effort: 4 },
+    { type: "jxl", quality: 80, effort: 4, progressive: true },
     { type: "webp", quality: 82 },
   ],
 };
@@ -61,8 +61,9 @@ const JXL_WORKER = path.join(__dirname, "lib", "jxl-worker.mjs");
 
 const encoders = {
   // Runs in a child process: Hexo's sandbox has no dynamic import(), which the WASM encoder needs.
-  async jxl(file, { quality = 80, effort = 4 }, cacheFile) {
-    await execFileAsync(process.execPath, [JXL_WORKER, file, cacheFile, String(quality), String(effort)], { maxBuffer: 1 << 20 });
+  async jxl(file, { quality = 80, effort = 4, progressive = true }, cacheFile) {
+    const args = [JXL_WORKER, file, cacheFile, String(quality), String(effort), progressive ? "1" : "0"];
+    await execFileAsync(process.execPath, args, { maxBuffer: 1 << 20 });
     return fs.readFileSync(cacheFile);
   },
   webp: (file, { quality = 82 }) => sharp(file).webp({ quality }).toBuffer(),

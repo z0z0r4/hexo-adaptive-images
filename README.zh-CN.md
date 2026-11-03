@@ -32,10 +32,11 @@ adaptive_images:
   extensions: [png, jpg, jpeg]    # 要转换的源图片类型
   cache_dir: node_modules/.cache/hexo-adaptive-images
   formats:                        # 顺序即 <picture> 里的优先级
-    - { type: jxl,  quality: 80, effort: 4 }
+    - { type: jxl,  quality: 80, effort: 4, progressive: true }
     - { type: webp, quality: 82 }
     # - { type: avif, quality: 50, effort: 4 }
 ```
 
 - `formats[].type`：`jxl`、`webp` 或 `avif`。
+- `progressive`（仅 jxl，默认 `true`）：渐进式编码，下载过程中先显示模糊的整图再逐步变清晰，文件会稍大。
 - `extensions`：`png`、`jpg`、`jpeg`。不支持 GIF。

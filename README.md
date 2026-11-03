@@ -32,10 +32,11 @@ adaptive_images:
   extensions: [png, jpg, jpeg]    # source image types to convert
   cache_dir: node_modules/.cache/hexo-adaptive-images
   formats:                        # order is the priority in <picture>
-    - { type: jxl,  quality: 80, effort: 4 }
+    - { type: jxl,  quality: 80, effort: 4, progressive: true }
     - { type: webp, quality: 82 }
     # - { type: avif, quality: 50, effort: 4 }
 ```
 
 - `formats[].type`: `jxl`, `webp` or `avif`.
+- `progressive` (jxl only, default `true`): encode so the image renders blurry first and sharpens while downloading. Slightly larger files.
 - `extensions`: `png`, `jpg`, `jpeg`. GIF is not supported.
